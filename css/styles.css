@@ -15,6 +15,7 @@ body {
 
 h1 {
     color: #A0C75B;
+    font-family: Montserrat, sans-serif;
 }
 
 a {
@@ -122,12 +123,12 @@ button {
     margin-top: 1.5em;
 }
 
-.form-element--hidden {
+.form-element--hidden label {
     color: #7B959A;
 }
 
-.form-element--hidden.isExpanded {
-    color: #354041;
+.form-element--hidden.isExpanded label {
+    color: #20A99F;
 }
 
 .form-element--container {
