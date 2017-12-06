@@ -1,0 +1,43 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    padding: 10px;
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 16px;
+}
+
+.input {
+    height: 400px;
+    width: 100%;
+}
+
+button {
+    font-size: 16px;
+    margin-top: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.parse {
+    clear: both;
+}
+
+.l-2up--1 {
+    float: left;
+    width: 50%;
+    padding-right: 10px;
+}
+
+.l-2up--2 {
+    float: left;
+    width: 50%;
+    padding-left: 10px;
+}
+
+.l-1up {
+    float: left;
+    width: 100%;
+    padding: 10px;
+}
