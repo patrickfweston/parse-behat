@@ -60,6 +60,14 @@ button {
     margin-top: 10px;
     padding: 10px;
     cursor: pointer;
+    color: #EF6730;
+    border: 1px solid #EF6730;
+    transition: 0.25s all ease-in-out;
+}
+
+button:hover {
+    color: #fff;
+    background: #EF6730;
 }
 
 .code {
@@ -107,14 +115,6 @@ button {
 
 .parse {
     clear: both;
-    color: #EF6730;
-    border: 1px solid #EF6730;
-    transition: 0.25s all ease-in-out;
-}
-
-.parse:hover {
-    color: #fff;
-    background: #EF6730;
 }
 
 #result {
