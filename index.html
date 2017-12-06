@@ -7,19 +7,32 @@
   <script type="text/javascript" src="js/parse.js"></script>
 </head>
 <body>
-  <div class="l-2up--1">
+  <div class="container">
     <h1>Parse</h1>
-    <label>The Behat region:</label>
-    <input type="text" id="region" />
-    <br />
-    <br />
-    <label>Your markup:</label>
-    <textarea class="input"></textarea>
-    <button class="parse">Parse</button>
+
+    <form>
+    <div class="form-element">
+      <label>Behat region:</label>
+      <input type="text" id="region" required />
+    </div>
+
+    <div class="form-element">
+      <label>Markup:</label>
+      <textarea class="input" required></textarea>
+      <button type="submit" class="parse">Parse!</button>
+    </div>
+    </form>
   </div>
 
-  <div class="l-1up">
-    <div id="result"></div>
+  <div class="container">
+    <div class="l-1up">
+      <div id="result">
+        <h2>Tests for Behat</h2>
+        <p>Copy these tests, or use the <em>Copy to Clipboard</em> button below and paste them into your Behat test.</p>
+        <div id="result-tests"></div>
+        <button id="copy-to-clipboard">Copy to Clipboard</button>
+      </div>
+    </div>
   </div>
 </body>
 </html>

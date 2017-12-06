@@ -1,3 +1,9 @@
+/**
+ * Parses the DOM and translates it into a DOM object.
+ *
+ * @param html
+ * @returns {Element}
+ */
 var str2DOMElement = function(html) {
     var wrapMap = {
         option: [ 1, "<select multiple='multiple'>", "</select>" ],
@@ -46,7 +52,15 @@ var str2DOMElement = function(html) {
     return element;
 };
 
-function walk(node, append, result) {
+/**
+ * Recursively walks through the given DOM and creates a set of selectors.
+ * @param node
+ * @param ignoreTags
+ * @param append
+ * @param result
+ * @returns {Array.<T>}
+ */
+function walk(node, ignoreTags, append, result) {
     if (typeof append === 'undefined') append = '';
     if (typeof result === 'undefined') result = new Array();
 
@@ -80,27 +94,53 @@ function walk(node, append, result) {
         }
 
         result.push(tempAppend);
-        walk(children[i], tempAppend, result);
+        walk(children[i], ignoreTags, tempAppend, result);
     }
 
-    return result.filter(function(item, i, ar){ return ar.indexOf(item) === i; });;
+    return result.filter(function(item, i, ar){ return ar.indexOf(item) === i; });
 }
 
 $(document).ready(function() {
-    $('.parse').on('click', function() {
+    /**
+     * When the 'Parse' button is clicked, process the results.
+     */
+    $('.parse').on('click', function(e) {
+        e.preventDefault();
+
         var dom = str2DOMElement($('.input').val());
-        var queryStrings = walk(dom);
+        var queryStrings = walk(dom, ['svg', 'div']);
 
         var resultString = '';
         for (var i = 0; i < queryStrings.length; i++) {
             var region = $('#region').val();
             if (region) {
-                resultString += "$this->assertRegionElement('" + queryStrings[i] + "', '" + region + "');" + "<br />";
+                resultString += "$this->assertRegionElement('" + queryStrings[i] + "', '" + region + "');" + "\n";
             } else {
-                resultString += queryStrings[i] + "<br />";
+                resultString += queryStrings[i] + "\n";
             }
         }
 
-        $('#result').html('<pre>'+resultString+'</pre>');
+        $('#result').show();
+        $('#result-tests').html('<pre>'+resultString+'</pre>');
     });
+
+    /**
+     * If 'Copy to Clipboard' is clicked, copy the values.
+     */
+    $('#copy-to-clipboard').on('click', function(e) {
+       copyToClipboard('#result-tests');
+    });
+
+    /**
+     * Copies an element's value to the clipboard
+     *
+     * @param element
+     */
+    function copyToClipboard(element) {
+        var $temp = $("<textarea>");
+        $("body").append($temp);
+        $temp.val($(element).text()).select();
+        document.execCommand("copy");
+        $temp.remove();
+    }
 });

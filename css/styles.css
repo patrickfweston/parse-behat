@@ -8,9 +8,22 @@ body {
     font-size: 16px;
 }
 
-.input {
+input,
+textarea,
+button {
+    border: 1px solid #000;
+}
+
+input[type='text'] {
+    width: 100%;
+    padding: 0.5em;
+    font-size: 16px;
+}
+
+textarea {
     height: 400px;
     width: 100%;
+    padding: 0.5em;
 }
 
 button {
@@ -22,6 +35,12 @@ button {
 
 .parse {
     clear: both;
+}
+
+.container {
+    display: block;
+    margin: 0 auto;
+    max-width: 800px;
 }
 
 .l-2up--1 {
@@ -37,7 +56,26 @@ button {
 }
 
 .l-1up {
-    float: left;
     width: 100%;
-    padding: 10px;
+}
+
+#result {
+    display: none;
+    margin-top: 2em;
+    padding: 1em;
+    background: #f1f1f1;
+}
+
+#result-tests {
+    width: 100%;
+    overflow-x: scroll;
+}
+
+label {
+    display: block;
+    padding: 1em 0 0.5em;
+}
+
+.form-element {
+    margin-top: 1.5em;
 }
