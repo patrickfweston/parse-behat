@@ -95,6 +95,16 @@ button {
 /*
  * Styles for Parse
  */
+.logo {
+    display: inline-block;
+    background-image: url('../images/iconmonstr-glasses-7.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 24px;
+    width: 24px;
+    margin-right: 10px;
+}
+
 .parse {
     clear: both;
     color: #EF6730;
