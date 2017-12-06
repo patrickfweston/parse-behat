@@ -135,6 +135,7 @@ button:hover {
 
 .form-element--hidden label {
     color: #7B959A;
+    cursor: pointer;
 }
 
 .form-element--hidden.isExpanded label {
