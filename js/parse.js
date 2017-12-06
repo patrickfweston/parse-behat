@@ -72,10 +72,22 @@ $(document).ready(function() {
     $('.parse').on('click', function(e) {
         e.preventDefault();
 
+        if (validateForm(['#region', '#markup'])) {
+            return;
+        }
+
         var resultString = createBehatTestStrings('.input', $('#ignored-tags').val());
 
-        $('#result').show();
-        $('#result-tests').html('<pre>'+resultString+'</pre>');
+        if (resultString) {
+            var $result = $('#result');
+            
+            $result.show();
+            $('#result-tests').html('<pre>' + resultString + '</pre>');
+
+            $('html, body').animate({
+                scrollTop: $result.offset().top
+            }, 500);
+        }
     });
 
     /**
@@ -105,7 +117,6 @@ $(document).ready(function() {
 
         // Create an array of ignoredTags
         var ignoredTags = ignoredTagsList.replace(',', ' ').split(' ').filter(entry => entry.trim() != '');
-        console.log(ignoredTags);
 
         // Build out our strings for tests
         var resultString = '';
@@ -125,6 +136,26 @@ $(document).ready(function() {
         }
 
         return resultString;
+    }
+
+    /**
+     * Very simple form validation.
+     *
+     * @param elements
+     * @returns {boolean}
+     */
+    function validateForm(elements) {
+        var hasError = false;
+
+        for (var i = 0; i < elements.length; i++) {
+            var $this = $(elements[i]);
+            if (!$this.val()) {
+                alert($this.data('validation-message'));
+                var hasError = true;
+            }
+        }
+
+        return hasError;
     }
 
     /**

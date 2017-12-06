@@ -10,10 +10,12 @@
   <div class="container">
     <h1>Parse</h1>
 
+    <p>A simple tool to create Behat tests for markup using the <span class="code">assertRegionElement()</span> test. For more information and documentation, visit the <a href="https://github.com/patrickfweston/parse-behat">code repository</a>.</p>
+
     <form>
       <div class="form-element">
-        <label>Behat region</label>
-        <input type="text" id="region" required placeholder="everywhere" />
+        <label>Behat region<sup>*</sup></label>
+        <input type="text" id="region" placeholder="everywhere" data-validation-message="Please enter a Behat region." required />
         <small>The name of the Behat region that these tests search for the markup. These are defined in your <span class="code">circle.yml</span> file</small>
       </div>
 
@@ -27,10 +29,12 @@
       </div>
 
       <div class="form-element">
-        <label>Markup</label>
-        <textarea class="input" placeholder="<div class='sample'><h1 id='heading'>Homepage</h1></div>" required></textarea>
+        <label>Markup<sup>*</sup></label>
+        <textarea id="markup" class="input" placeholder="<div class='sample'><h1 id='heading'>Homepage</h1></div>" data-validation-message="Please enter some markup region."  required></textarea>
         <small>The markup that tests will be created for.</small>
       </div>
+
+      <small><sup>*</sup> Required field.</small>
 
       <button type="submit" class="parse">Parse!</button>
     </form>
