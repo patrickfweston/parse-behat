@@ -23,7 +23,8 @@ var str2DOMElement = function(html) {
  * @param result
  * @returns {Array.<T>}
  */
-function walk(node, append, result) {
+function walk(node, ignoredTags, append, result) {
+    if (typeof ignoredTags === 'undefined') ignoredTags = [];
     if (typeof append === 'undefined') append = '';
     if (typeof result === 'undefined') result = [];
 
@@ -34,7 +35,7 @@ function walk(node, append, result) {
 
         var tag = $object.prop("tagName").toLowerCase();
 
-        if ($object.prop("tagName").toLowerCase() == 'svg') {
+        if ($.inArray(tag, ignoredTags) !== -1) {
             continue;
         }
 
@@ -58,7 +59,7 @@ function walk(node, append, result) {
         }
 
         result.push(tempAppend);
-        walk(children[i], tempAppend, result);
+        walk(children[i], ignoredTags, tempAppend, result);
     }
 
     return result.filter(function(item, i, ar){ return ar.indexOf(item) === i; });
@@ -86,7 +87,7 @@ $(document).ready(function() {
 
     /**
      * Build out our Behat test strings.
-     * 
+     *
      * @param element
      * @returns {string}
      */
@@ -98,7 +99,7 @@ $(document).ready(function() {
         var resultString = '';
         for (var i = 0; i < dom.length; i++) {
             // Walk through the DOM for this top level item.
-            var queryStrings = walk(dom[i]);
+            var queryStrings = walk(dom[i], ['svg']);
 
             // Loop over multiple query strings.
             for (var j = 0; j < queryStrings.length; j++) {
