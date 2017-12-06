@@ -1,7 +1,7 @@
 <html>
 <head>
   <title>Parse Behat</title>
-  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
   <script type="text/javascript" src="js/parse.js"></script>
@@ -11,16 +11,28 @@
     <h1>Parse</h1>
 
     <form>
-    <div class="form-element">
-      <label>Behat region:</label>
-      <input type="text" id="region" required />
-    </div>
+      <div class="form-element">
+        <label>Behat region</label>
+        <input type="text" id="region" required placeholder="everywhere" />
+        <small>The name of the Behat region that these tests search for the markup. These are defined in your <span class="code">circle.yml</span> file</small>
+      </div>
 
-    <div class="form-element">
-      <label>Markup:</label>
-      <textarea class="input" required></textarea>
+      <div class="form-element form-element--hidden">
+        <label>Additional options +</label>
+        <div class="form-element--container">
+          <label>Tags to exclude</label>
+          <input type="text" id="ignored-tags" value="svg"/>
+          <small>A list of tags (separated by commas or spaces) to be excluded. Inline SVGs are often stripped because they will have tests created for their interior path, fill, etc. elements.</small>
+        </div>
+      </div>
+
+      <div class="form-element">
+        <label>Markup</label>
+        <textarea class="input" placeholder="<div class='sample'><h1 id='heading'>Homepage</h1></div>" required></textarea>
+        <small>The markup that tests will be created for.</small>
+      </div>
+
       <button type="submit" class="parse">Parse!</button>
-    </div>
     </form>
   </div>
 

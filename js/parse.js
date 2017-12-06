@@ -72,7 +72,7 @@ $(document).ready(function() {
     $('.parse').on('click', function(e) {
         e.preventDefault();
 
-        var resultString = createBehatTestStrings('.input');
+        var resultString = createBehatTestStrings('.input', $('#ignored-tags').val());
 
         $('#result').show();
         $('#result-tests').html('<pre>'+resultString+'</pre>');
@@ -86,20 +86,32 @@ $(document).ready(function() {
     });
 
     /**
+     *
+     */
+    $('.form-element--hidden label').on('click', function(e) {
+        $('.form-element--container').slideToggle();
+        $(this).parent().toggleClass('isExpanded');
+    });
+
+    /**
      * Build out our Behat test strings.
      *
      * @param element
      * @returns {string}
      */
-    function createBehatTestStrings(element) {
+    function createBehatTestStrings(element, ignoredTagsList) {
         // Convert the input into a traversable DOM object.
         var dom = str2DOMElement($(element).val().trim());
+
+        // Create an array of ignoredTags
+        var ignoredTags = ignoredTagsList.replace(',', ' ').split(' ').filter(entry => entry.trim() != '');
+        console.log(ignoredTags);
 
         // Build out our strings for tests
         var resultString = '';
         for (var i = 0; i < dom.length; i++) {
             // Walk through the DOM for this top level item.
-            var queryStrings = walk(dom[i], ['svg']);
+            var queryStrings = walk(dom[i], ignoredTags);
 
             // Loop over multiple query strings.
             for (var j = 0; j < queryStrings.length; j++) {

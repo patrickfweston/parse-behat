@@ -1,3 +1,6 @@
+/*
+ * Common styles
+ */
 * {
     box-sizing: border-box;
 }
@@ -6,6 +9,18 @@ body {
     padding: 10px;
     font-family: Roboto, Arial, sans-serif;
     font-size: 16px;
+}
+
+small {
+    display: block;
+    padding: 0.75em 0;
+    color: #676767;
+}
+
+label {
+    display: block;
+    padding: 1em 0 0.5em;
+    font-weight: bold;
 }
 
 input,
@@ -34,16 +49,14 @@ button {
     cursor: pointer;
 }
 
-.parse {
-    clear: both;
+.code {
+    font-family: monospace;
 }
 
-.container {
-    display: block;
-    margin: 0 auto;
-    max-width: 800px;
-}
 
+/*
+ * Layouts
+ */
 .l-2up--1 {
     float: left;
     width: 50%;
@@ -60,6 +73,19 @@ button {
     width: 100%;
 }
 
+.container {
+    display: block;
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+/*
+ * Styles for Parse
+ */
+.parse {
+    clear: both;
+}
+
 #result {
     display: none;
     margin-top: 2em;
@@ -72,11 +98,20 @@ button {
     overflow-x: scroll;
 }
 
-label {
-    display: block;
-    padding: 1em 0 0.5em;
-}
-
 .form-element {
     margin-top: 1.5em;
+}
+
+.form-element--hidden {
+    color: #676767;
+}
+
+.form-element--hidden.isExpanded {
+    color: #000;
+}
+
+.form-element--container {
+    display: none;
+    padding-bottom: 1em;
+    border-bottom: 1px solid black;
 }
