@@ -16,9 +16,7 @@ Once you enter these items, simply click "Parse!".
 Your tests are printed below and can be copy and pasted into Behat.
 
 ## Example
-In this example, we're testing for a section of navigation markup in the "header" region. After clicking "Parse", the 4 `assertRegionElement()` tests can be copied and pasted into the appropriate Behat test function.
-
-![Image of Parse UI](/screenshots/parse.png)
+[View the example screenshot](/screenshots/parse.png).
 
 ## Options
 * Behat region (_required_) : The name of the region that contains this markup. This region should be defined in your `behat.yml` file. You can use the "everywhere" region to look on the entire page.
