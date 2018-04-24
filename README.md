@@ -1,6 +1,8 @@
 # Parse
 A simple site that creates Behat markup tests for a given section of markup.
 
+### [Use on GitHub Pages](https://patrickfweston.github.io/parse-behat/)
+
 ## How it works
 Parse uses Javascript to read your markup. It creates a Document Object Model (DOM) and recursively builds out a list of elements. It then prints a series of markup tests that you can use right in your Behat step definition.
 
